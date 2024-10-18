@@ -16,11 +16,6 @@ const InformationForm = () => {
   const [colour, setColour] = useState("");
   const [icolour, setIcolour] = useState("");
   const [noofowners, setNoofowners] = useState("");
-  const [file, setFile] = useState(null);
-
-  const handleFileChange = (e) => {
-    setFile(e.target.files[0]);
-  };
  
   const submitInformation = () => {
     
@@ -37,9 +32,7 @@ const InformationForm = () => {
         grade,
         colour,
         icolour,
-        noofowners,
-        file
-
+        noofowners
 
 
       }).then(() => {
@@ -163,12 +156,15 @@ const InformationForm = () => {
           onChange={(e) => setIcolour(e.target.value)}
         />
       </div>
-      <div>
-      <form onSubmit={handleSubmit}>
-        <input type="file" onChange={handleFileChange} />
-        <button type="submit">Upload</button>
-      </form>
-    </div>
+      <div className="form-group">
+          <label htmlFor="file">Image</label>
+          <input
+            type="image"
+            className="form-control"
+            id="image"
+            placeholder="Upload the file"
+          />
+        </div>
 
       <div className="form-group">
         <button onClick={submitInformation}>

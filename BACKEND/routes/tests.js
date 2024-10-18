@@ -2,15 +2,6 @@ const router = require("express").Router();
 const pool = require("../models/test.js"); 
 
 
-const storage = multer.diskStorage({
-    destination: (req, file, cb) => {
-      cb(null, 'uploads/');
-    },
-    filename: (req, file, cb) => {
-      cb(null, Date.now() + path.extname(file.originalname)); 
-    }
-  });
-  const upload = multer({ storage: storage });
 //use post request
 router.route("/add").post((req, res) => {
     const { vehicle_make,vehicle_model,body_type,regno,milage,engine,fuel,year,district,grade,colour,icolour,noofowners,file } = req.body;
@@ -27,6 +18,3 @@ router.route("/add").post((req, res) => {
 });
 
 module.exports=router;
-
-
-
