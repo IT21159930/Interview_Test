@@ -1,12 +1,22 @@
 const router = require("express").Router();
 const pool = require("../models/test.js"); 
 
+
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+      cb(null, 'uploads/');
+    },
+    filename: (req, file, cb) => {
+      cb(null, Date.now() + path.extname(file.originalname)); 
+    }
+  });
+  const upload = multer({ storage: storage });
 //use post request
 router.route("/add").post((req, res) => {
-    const { vehicle_make,vehicle_model,body_type,regno,milage,engine,fuel,year,district,grade,colour,icolour,noofowners } = req.body;
+    const { vehicle_make,vehicle_model,body_type,regno,milage,engine,fuel,year,district,grade,colour,icolour,noofowners,file } = req.body;
 //insert vlues in to the table.
     const query = 'INSERT INTO vehicle_advertisements (vehicle_make,vehicle_model,body_type,regno,milage,engine,fuel,year,district,grade,colour,icolour,noofowners) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
-    pool.query(query, [vehicle_make,vehicle_model,body_type,regno,milage,engine,fuel,year,district,grade,colour,icolour,noofowners], (err, results) => {
+    pool.query(query, [vehicle_make,vehicle_model,body_type,regno,milage,engine,fuel,year,district,grade,colour,icolour,noofowners,file], (err, results) => {
       //Display success or error message to the user.
         if (err) {
             console.error(err);
@@ -17,3 +27,6 @@ router.route("/add").post((req, res) => {
 });
 
 module.exports=router;
+
+
+

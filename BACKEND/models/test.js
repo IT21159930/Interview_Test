@@ -1,5 +1,5 @@
 const mysql = require('mysql2');
-
+//mysqlDB Connection
 const pool = mysql.createPool({
   host: 'localhost', 
   user: 'root', 
