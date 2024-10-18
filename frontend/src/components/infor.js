@@ -37,7 +37,7 @@ const InformationForm = () => {
 
       }).then(() => {
         alert("Information added successfully");
-        fetchInformation();
+        
         resetForm();
       }).catch((error) => {
         console.error("Error adding data", error);
